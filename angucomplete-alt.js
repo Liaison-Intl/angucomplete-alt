@@ -46,7 +46,7 @@
     // Set the default template for this directive
     $templateCache.put(TEMPLATE_URL,
         '<div class="angucomplete-holder" ng-class="{\'angucomplete-dropdown-visible\': showDropdown}">' +
-        '  <input id="{{id}}_value" name="{{inputName}}" tabindex="{{fieldTabindex}}" ng-class="{\'angucomplete-input-not-empty\': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>' +
+        '  <input id="{{id}}_value" name="{{inputName}}" tabindex="{{fieldTabindex}}" ng-class="{\'angucomplete-input-not-empty\': notEmpty}" ng-model="searchStr" ng-disabled="disableInput" type="{{inputType}}" aria-label="{{ariaLabel}}" placeholder="{{placeholder}}" maxlength="{{maxlength}}" ng-focus="onFocusHandler()" class="{{inputClass}}" ng-focus="resetHideResults()" ng-blur="hideResults($event)" autocapitalize="off" autocorrect="off" autocomplete="off" ng-change="inputChangeHandler(searchStr)"/>' +
         '  <div id="{{id}}_dropdown" class="angucomplete-dropdown" ng-show="showDropdown">' +
         '    <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>' +
         '    <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>' +
@@ -729,6 +729,10 @@
         minlength = parseInt(scope.minlength, 10);
       }
 
+      if(!scope.ariaLabel){
+        ariaLabel = 'autocomplete field';
+      }
+
       // check pause time
       if (!scope.pause) {
         scope.pause = PAUSE;
@@ -821,7 +825,8 @@
         fieldTabindex: '@',
         inputName: '@',
         focusFirst: '@',
-        parseInput: '&'
+        parseInput: '&',
+        ariaLabel: '='
       },
       templateUrl: function(element, attrs) {
         return attrs.templateUrl || TEMPLATE_URL;
