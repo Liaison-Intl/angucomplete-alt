@@ -826,7 +826,8 @@
         inputName: '@',
         focusFirst: '@',
         parseInput: '&',
-        screenReaderLabel: '@'
+        screenReaderLabel: '@',
+				payload: '='
       },
       templateUrl: function(element, attrs) {
         return attrs.templateUrl || TEMPLATE_URL;
