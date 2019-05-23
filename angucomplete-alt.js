@@ -646,6 +646,12 @@
           scope.showDropdown = true;
           showAll();
         }
+        else if (scope.showOnRefocus && (scope.searchStr && scope.searchStr.length)) {
+          console.log("Refocus");
+          scope.currentIndex = scope.focusFirst ? 0 : scope.currentIndex;
+          scope.showDropdown = true;
+          showAll();
+        }
       };
 
       scope.hideResults = function() {
@@ -826,7 +832,8 @@
         inputName: '@',
         focusFirst: '@',
         parseInput: '&',
-        screenReaderLabel: '@'
+        screenReaderLabel: '@',
+        showOnRefocus: '=?'
       },
       templateUrl: function(element, attrs) {
         return attrs.templateUrl || TEMPLATE_URL;
