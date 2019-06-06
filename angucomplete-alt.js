@@ -624,6 +624,10 @@
         }
       }
 
+      // Need that method to be public, in order to being able to call that function
+      // and force the results to be updated
+      scope.processResults = processResults;
+
       function showAll() {
         if (scope.localData) {
           scope.searching = false;
